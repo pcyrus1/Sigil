@@ -5,8 +5,8 @@ import {
   Brain,
   Users,
   Landmark,
-  Facebook,
-  Instagram,
+  Globe,
+  Camera,
   MessageCircle,
 } from "lucide-react";
 
@@ -431,8 +431,8 @@ const App = () => {
               human-driven content.
             </p>
             <div className="flex gap-4">
-              <Facebook className="w-5 h-5 cursor-pointer hover:text-[#E61E25]" />
-              <Instagram className="w-5 h-5 cursor-pointer hover:text-[#E61E25]" />
+              <Globe className="w-5 h-5 cursor-pointer hover:text-[#E61E25]" />
+              <Camera className="w-5 h-5 cursor-pointer hover:text-[#E61E25]" />
             </div>
           </div>
 
