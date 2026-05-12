@@ -48,16 +48,54 @@ const App = () => {
           background-color: #000;
           color: #fff;
           display: inline-block;
-          padding: 8px 24px;
+          padding: 6px 20px;
           transform: skewX(-12deg);
           font-weight: 900;
           letter-spacing: 0.15em;
-          box-shadow: 6px 6px 0px rgba(230, 30, 37, 0.3);
         }
 
         .hashtag-text {
           transform: skewX(12deg);
           display: inline-block;
+        }
+
+        /* Larger banner style used in header */
+        .hashtag-banner {
+          background-color: #c7d7e2;
+          color: #6b0e0e;
+          display: inline-block;
+          padding: 14px 34px;
+          transform: skewX(-6deg);
+          font-weight: 900;
+          letter-spacing: 0.16em;
+          box-shadow: 0 6px 0 rgba(0,0,0,0.08);
+        }
+        .hashtag-banner .hashtag-text {
+          transform: skewX(6deg);
+          display: inline-block;
+          font-size: 34px;
+        }
+
+        .hero-title {
+          font-size: 220px;
+          line-height: 0.9;
+          letter-spacing: -6px;
+          margin-bottom: 0.25rem;
+          display: block;
+        }
+
+        @media (min-width: 1024px) {
+          .hero-title { font-size: 320px; }
+          .hero-title { margin-bottom: 0.5rem; }
+          .hashtag-banner .hashtag-text { font-size: 48px; }
+          .hero-subtitle { margin-top: 0.75rem; margin-bottom: 1.5rem; }
+        }
+
+        /* Subtitle spacing to avoid overlap with large title */
+        .hero-subtitle {
+          margin-top: 0.75rem;
+          margin-bottom: 1rem;
+          letter-spacing: 0.6em;
         }
 
         .fade-in {
@@ -67,6 +105,15 @@ const App = () => {
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(10px); }
           to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+          100% { transform: translateY(0px); }
+        }
+        .float-animation {
+          animation: float 6s ease-in-out infinite;
         }
       `}</style>
 
@@ -82,7 +129,6 @@ const App = () => {
               e.target.nextSibling.style.display = "block";
             }}
           />
-          {/* Fallback text if image fails */}
           <div className="oswald font-bold text-xl tracking-[0.2em] hidden">
             <span className="text-black">KONTENT</span>
             <span style={{ color: brandRed }}>KUNDA</span>
@@ -122,60 +168,74 @@ const App = () => {
       {/* Hero Section */}
       <section
         id="siggil"
-        className="hero-texture min-h-screen flex items-center justify-center pt-32 pb-16 px-4 relative overflow-hidden"
+        className="hero-texture min-h-screen flex items-center relative overflow-hidden bg-white"
       >
-        <div className="max-w-6xl w-full text-center z-10 flex flex-col items-center">
-          {/* Logo and "PRESENTS" text integration */}
-          <div className="mb-10 fade-in flex flex-col items-center">
+        {/* Background Text / Accents */}
+        <div className="absolute left-[-5%] top-[20%] oswald font-black text-[300px] text-gray-50 pointer-events-none select-none opacity-50 z-0">
+          GAMBIA
+        </div>
+
+        <div className="max-w-7xl mx-auto w-full px-6 md:px-12 z-10 flex flex-col md:flex-row items-center justify-between">
+          {/* Left Content Column - large logo/title */}
+          <div className="w-full md:w-1/2 flex flex-col items-start fade-in text-left relative z-10">
+            <div className="mb-6">
+              <img
+                src="kontent.jpeg"
+                alt="Kontent Kunda"
+                className="h-12 w-auto object-contain grayscale mb-2"
+                onError={(e) => {
+                  e.target.style.display = "none";
+                }}
+              />
+              <div className="oswald text-[10px] font-black tracking-[0.8em] text-gray-400 uppercase">
+                PRESENTS
+              </div>
+            </div>
+
+            <h1
+              className="oswald hero-title font-black m-0 text-black"
+              style={{ marginBottom: 8 }}
+            >
+              Siggil<span style={{ color: brandRed }}>!</span>
+            </h1>
+
+            <div className="oswald hero-subtitle text-xl md:text-3xl font-bold uppercase">
+              NATION ON THE BRINK
+            </div>
+
+            <div className="mt-6">
+              <div className="hashtag-banner oswald">
+                <span className="hashtag-text">#ASNARRATEDBYUS!</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right-side Image (enlarged, static) */}
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[65%] md:w-[70%] lg:w-[75%] max-w-[1200px] pointer-events-none z-0 hidden md:block">
             <img
-              src="kontent.jpeg"
-              alt="Kontent Kunda"
-              className="h-20 md:h-28 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-700 opacity-90 mb-4"
+              src="boy.png"
+              alt="Siggil Subject"
+              className="absolute right-0 top-0 h-auto drop-shadow-[-20px_20px_50px_rgba(0,0,0,0.1)] grayscale hover:grayscale-0 transition-all duration-1000"
+              style={{
+                objectPosition: "right center",
+                maskImage:
+                  "linear-gradient(to left, black 75%, transparent 100%)",
+                WebkitMaskImage:
+                  "linear-gradient(to left, black 75%, transparent 100%)",
+              }}
+              onError={(e) => {
+                e.target.style.display = "none";
+              }}
             />
-            <div className="oswald text-sm md:text-base font-black tracking-[1em] text-black ml-[1em] border-t border-black/10 pt-4 px-8">
-              PRESENTS
-            </div>
           </div>
 
-          <h2 className="oswald text-sm font-bold tracking-[0.5em] text-gray-400 mb-6 uppercase">
-            A 10-Episode Documentary Series
-          </h2>
-
-          <h1 className="oswald text-[100px] md:text-[180px] font-bold leading-[0.8] tracking-tighter m-0 text-black mb-6">
-            Siggil<span style={{ color: brandRed }}>!</span>
-          </h1>
-
-          <div
-            className="oswald text-3xl md:text-6xl font-bold tracking-[0.2em] uppercase mb-10 border-b-8 pb-4"
-            style={{ borderColor: brandRed }}
-          >
-            Nation on the Brink
-          </div>
-
-          <div className="mb-12">
-            <div className="hashtag-box oswald text-2xl md:text-4xl">
-              <span className="hashtag-text">#ASNARRATEDBYUS!</span>
-            </div>
-          </div>
-
-          <p className="text-lg md:text-2xl font-light leading-relaxed max-w-2xl text-gray-700 mb-12">
-            Exposing the reality. Sparking change. Exploring the shift between
-            who we were and who we are becoming.
-          </p>
-
-          <div className="flex flex-wrap gap-4 justify-center">
-            <a
-              href="#mission"
-              className="bg-black text-white px-12 py-5 oswald tracking-widest uppercase font-bold hover:bg-[#E61E25] transition-all shadow-xl"
-            >
-              Explore the Project
-            </a>
-            <a
-              href="#contact"
-              className="border-2 border-black text-black px-12 py-5 oswald tracking-widest uppercase font-bold hover:bg-black hover:text-white transition-all"
-            >
-              Get Involved
-            </a>
+          {/* Mobile Image (smaller, centered) */}
+          <div className="w-full mt-12 md:hidden">
+            <img
+              src="boy.png"
+              alt="Siggil Subject"
+              className="w-full h-auto grayscale opacity-80"
+            />
           </div>
         </div>
       </section>
