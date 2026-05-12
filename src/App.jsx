@@ -44,16 +44,49 @@ const App = () => {
           animation: pulse 2s infinite;
         }
 
-        .image-gritty {
-          filter: grayscale(100%) contrast(110%);
+        .hashtag-box {
+          background-color: #000;
+          color: #fff;
+          display: inline-block;
+          padding: 8px 24px;
+          transform: skewX(-12deg);
+          font-weight: 900;
+          letter-spacing: 0.15em;
+          box-shadow: 6px 6px 0px rgba(230, 30, 37, 0.3);
+        }
+
+        .hashtag-text {
+          transform: skewX(12deg);
+          display: inline-block;
+        }
+
+        .fade-in {
+          animation: fadeIn 1.2s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
 
       {/* Top Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 py-4 px-6 flex justify-between items-center">
-        <div className="oswald font-bold text-2xl tracking-[0.2em] flex items-center gap-2">
-          <span className="text-black">KONTENT</span>
-          <span style={{ color: brandRed }}>KUNDA</span>
+      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 py-3 px-6 flex justify-between items-center">
+        <div className="flex items-center gap-3">
+          <img
+            src="kontent.jpeg"
+            alt="Kontent Kunda Logo"
+            className="h-10 w-auto object-contain"
+            onError={(e) => {
+              e.target.style.display = "none";
+              e.target.nextSibling.style.display = "block";
+            }}
+          />
+          {/* Fallback text if image fails */}
+          <div className="oswald font-bold text-xl tracking-[0.2em] hidden">
+            <span className="text-black">KONTENT</span>
+            <span style={{ color: brandRed }}>KUNDA</span>
+          </div>
         </div>
         <div className="hidden md:flex gap-8 oswald text-xs font-bold uppercase tracking-widest">
           <a
@@ -61,6 +94,12 @@ const App = () => {
             className="hover:text-[var(--brand-red)] transition-colors"
           >
             About Us
+          </a>
+          <a
+            href="#services"
+            className="hover:text-[var(--brand-red)] transition-colors"
+          >
+            Services
           </a>
           <a href="#siggil" className="text-[#E61E25] tracking-widest">
             Siggil!
@@ -83,65 +122,60 @@ const App = () => {
       {/* Hero Section */}
       <section
         id="siggil"
-        className="hero-texture min-h-screen flex items-center justify-center pt-20 px-4 relative overflow-hidden"
+        className="hero-texture min-h-screen flex items-center justify-center pt-32 pb-16 px-4 relative overflow-hidden"
       >
-        <div className="absolute top-20 right-10 w-64 h-64 opacity-10 pointer-events-none">
-          <img
-            src="https://www.transparenttextures.com/patterns/cracked-white-wall.png"
-            alt=""
-            className="w-full rotate-45"
-          />
-        </div>
-
-        <div className="max-w-6xl w-full flex flex-col lg:flex-row items-center gap-12 z-10">
-          <div className="lg:w-3/5 text-center lg:text-left">
-            <h2 className="oswald text-sm font-bold tracking-[0.5em] text-gray-400 mb-4 uppercase">
-              A 10-Episode Documentary Series
-            </h2>
-            <h1 className="oswald text-[80px] md:text-[150px] font-bold leading-[0.8] tracking-tighter m-0 text-black mb-6">
-              Siggil<span style={{ color: brandRed }}>!</span>
-            </h1>
-            <div
-              className="oswald text-2xl md:text-5xl font-bold tracking-[0.3em] uppercase mb-8 border-l-8 pl-6"
-              style={{ borderColor: brandRed }}
-            >
-              Nation on the Brink
-            </div>
-            <p className="text-lg md:text-2xl font-light leading-relaxed max-w-xl text-gray-700 mb-10">
-              Exposing the reality. Sparking change. Exploring the shift between
-              who we were and who we are becoming.
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-              <a
-                href="#mission"
-                className="bg-black text-white px-10 py-4 oswald tracking-widest uppercase font-bold hover:bg-[#E61E25] transition-all"
-              >
-                Explore the Project
-              </a>
-              <a
-                href="#contact"
-                className="border-2 border-black text-black px-10 py-4 oswald tracking-widest uppercase font-bold hover:bg-black hover:text-white transition-all"
-              >
-                Get Involved
-              </a>
+        <div className="max-w-6xl w-full text-center z-10 flex flex-col items-center">
+          {/* Logo and "PRESENTS" text integration */}
+          <div className="mb-10 fade-in flex flex-col items-center">
+            <img
+              src="kontent.jpeg"
+              alt="Kontent Kunda"
+              className="h-20 md:h-28 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-700 opacity-90 mb-4"
+            />
+            <div className="oswald text-sm md:text-base font-black tracking-[1em] text-black ml-[1em] border-t border-black/10 pt-4 px-8">
+              PRESENTS
             </div>
           </div>
 
-          <div className="lg:w-2/5 relative">
-            <div className="relative z-10 shadow-2xl overflow-hidden border-[16px] border-white">
-              <img
-                src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80&w=1000"
-                alt="Youth Perspective"
-                className="w-full h-auto image-gritty"
-              />
+          <h2 className="oswald text-sm font-bold tracking-[0.5em] text-gray-400 mb-6 uppercase">
+            A 10-Episode Documentary Series
+          </h2>
+
+          <h1 className="oswald text-[100px] md:text-[180px] font-bold leading-[0.8] tracking-tighter m-0 text-black mb-6">
+            Siggil<span style={{ color: brandRed }}>!</span>
+          </h1>
+
+          <div
+            className="oswald text-3xl md:text-6xl font-bold tracking-[0.2em] uppercase mb-10 border-b-8 pb-4"
+            style={{ borderColor: brandRed }}
+          >
+            Nation on the Brink
+          </div>
+
+          <div className="mb-12">
+            <div className="hashtag-box oswald text-2xl md:text-4xl">
+              <span className="hashtag-text">#ASNARRATEDBYUS!</span>
             </div>
-            <div className="absolute -bottom-8 -left-8 bg-black text-white p-6 z-20 max-w-[200px] oswald tracking-widest">
-              <div className="text-sm">REAL STORIES.</div>
-              <div className="text-sm">REAL PEOPLE.</div>
-              <div className="font-bold text-xl" style={{ color: brandRed }}>
-                REAL IMPACT.
-              </div>
-            </div>
+          </div>
+
+          <p className="text-lg md:text-2xl font-light leading-relaxed max-w-2xl text-gray-700 mb-12">
+            Exposing the reality. Sparking change. Exploring the shift between
+            who we were and who we are becoming.
+          </p>
+
+          <div className="flex flex-wrap gap-4 justify-center">
+            <a
+              href="#mission"
+              className="bg-black text-white px-12 py-5 oswald tracking-widest uppercase font-bold hover:bg-[#E61E25] transition-all shadow-xl"
+            >
+              Explore the Project
+            </a>
+            <a
+              href="#contact"
+              className="border-2 border-black text-black px-12 py-5 oswald tracking-widest uppercase font-bold hover:bg-black hover:text-white transition-all"
+            >
+              Get Involved
+            </a>
           </div>
         </div>
       </section>
@@ -198,25 +232,20 @@ const App = () => {
             <div className="md:w-1/2 grid grid-cols-2 gap-4">
               <div className="space-y-4 pt-12">
                 <img
-                  src="https://images.unsplash.com/photo-1542204172-3c1fbd15865d?auto=format&fit=crop&q=80&w=400"
-                  className="rounded-xl grayscale hover:grayscale-0 transition-all duration-500 shadow-lg"
-                  alt="Culture"
-                />
-                <img
                   src="https://images.unsplash.com/photo-1493612276216-ee3925520721?auto=format&fit=crop&q=80&w=400"
-                  className="rounded-xl grayscale hover:grayscale-0 transition-all duration-500 shadow-lg"
+                  className="rounded-xl grayscale shadow-lg"
                   alt="Creative"
                 />
               </div>
               <div className="space-y-4">
                 <img
                   src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=400"
-                  className="rounded-xl grayscale hover:grayscale-0 transition-all duration-500 shadow-lg"
+                  className="rounded-xl grayscale shadow-lg"
                   alt="Video"
                 />
                 <img
                   src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&q=80&w=400"
-                  className="rounded-xl grayscale hover:grayscale-0 transition-all duration-500 shadow-lg"
+                  className="rounded-xl grayscale shadow-lg"
                   alt="Story"
                 />
               </div>
@@ -225,49 +254,43 @@ const App = () => {
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Our Services Section */}
       <section
+        id="services"
         className="py-24 px-4 overflow-hidden relative"
         style={{
           background: `linear-gradient(135deg, #F9D8B9 0%, ${brandTan} 100%)`,
         }}
       >
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16">
-          <div className="md:w-1/2 order-2 md:order-1">
-            <div className="relative">
-              <img
-                src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=800"
-                alt="Production"
-                className="rounded-2xl shadow-3xl grayscale"
-              />
+        <div className="max-w-4xl mx-auto text-center space-y-12">
+          <h2 className="playfair text-6xl leading-tight">Our Services.</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+            {[
+              "Content Directing",
+              "Storytelling",
+              "Social Impact Production",
+              "Radio Show Design",
+              "Video Production",
+              "Art Direction",
+            ].map((service, idx) => (
               <div
-                className="absolute inset-0 opacity-20 mix-blend-multiply"
-                style={{ backgroundColor: brandTan }}
-              ></div>
-            </div>
-          </div>
-          <div className="md:w-1/2 order-1 md:order-2 space-y-8">
-            <h2 className="playfair text-6xl leading-tight">Our Services.</h2>
-            <div className="grid grid-cols-1 gap-4">
-              {[
-                "Content Directing",
-                "Storytelling",
-                "Social Impact Production",
-                "Radio Show Design",
-                "Video Production",
-                "Art Direction",
-              ].map((service, idx) => (
-                <div
-                  key={idx}
-                  className={`px-6 py-4 oswald font-bold tracking-widest flex items-center justify-between group cursor-pointer transition-all ${idx === 2 ? "bg-black text-white" : "bg-white/40 backdrop-blur hover:bg-white"}`}
-                >
-                  {service.toUpperCase()}{" "}
-                  <ArrowRight
-                    className={`w-5 h-5 ${idx === 2 ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
-                  />
-                </div>
-              ))}
-            </div>
+                key={idx}
+                className={`px-8 py-6 oswald font-bold tracking-widest flex items-center justify-between group cursor-pointer transition-all ${
+                  idx === 2
+                    ? "bg-black text-white"
+                    : "bg-white/40 backdrop-blur hover:bg-white"
+                }`}
+              >
+                {service.toUpperCase()}
+                <ArrowRight
+                  className={`w-5 h-5 ${
+                    idx === 2
+                      ? "opacity-100"
+                      : "opacity-0 group-hover:opacity-100"
+                  }`}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -335,7 +358,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* Projects 2026 */}
+      {/* Upcoming Projects 2026 */}
       <section id="projects" className="py-24 px-4 bg-black text-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="playfair text-6xl italic mb-16">
@@ -375,13 +398,9 @@ const App = () => {
         <div className="max-w-4xl mx-auto bg-white shadow-2xl flex flex-col md:flex-row overflow-hidden border border-gray-100">
           <div className="md:w-1/2 p-12 bg-[#F5F5F5] flex flex-col justify-center">
             <h2 className="oswald text-4xl font-bold uppercase mb-6 leading-tight">
-              Be Part of <br />
-              The Conversation<span style={{ color: brandRed }}>!</span>
+              Be Part of <br /> The Conversation
+              <span style={{ color: brandRed }}>!</span>
             </h2>
-            <p className="text-gray-500 mb-8 font-light italic">
-              Share your story. Be the change. Confirm your participation via
-              WhatsApp to help shape a better tomorrow.
-            </p>
             <div className="space-y-4 text-xs font-bold oswald tracking-widest text-gray-400">
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-green-500" /> CONFIDENTIAL
@@ -391,26 +410,15 @@ const App = () => {
                 <Check className="w-4 h-4 text-green-500" /> LOCAL LANGUAGE
                 SUPPORT
               </div>
-              <div className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-green-500" /> POP-UP CINEMA
-                ACCESS
-              </div>
             </div>
           </div>
           <div className="md:w-1/2 p-12 text-center flex flex-col justify-center items-center">
-            <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-6">
-              <MessageCircle className="w-12 h-12 text-green-500" />
-            </div>
-            <h3 className="oswald text-xl font-bold uppercase mb-2">
-              WhatsApp Us
-            </h3>
+            <MessageCircle className="w-12 h-12 text-green-500 mb-6" />
             <div className="text-3xl oswald font-bold text-black mb-8 tracking-widest">
               +220 7222120
             </div>
             <a
               href="https://wa.me/2207222120"
-              target="_blank"
-              rel="noopener noreferrer"
               className="whatsapp-pulse bg-green-500 text-white w-full py-4 oswald font-bold tracking-widest uppercase hover:bg-green-600 transition-all rounded-sm text-center"
             >
               Connect Now
@@ -423,42 +431,36 @@ const App = () => {
       <footer className="bg-white text-black py-20 px-4 border-t border-gray-100">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
           <div className="space-y-6">
-            <div className="oswald font-bold text-3xl tracking-widest">
-              KONTENT KUNDA
-            </div>
-            <p className="text-gray-400 text-sm font-light max-w-xs">
-              Building identities that truly resonate through authentic,
-              human-driven content.
-            </p>
+            <img
+              src="kontent.jpeg"
+              alt="Kontent Kunda Logo"
+              className="h-12 w-auto object-contain mb-4"
+            />
             <div className="flex gap-4">
               <Globe className="w-5 h-5 cursor-pointer hover:text-[#E61E25]" />
               <Camera className="w-5 h-5 cursor-pointer hover:text-[#E61E25]" />
             </div>
           </div>
-
           <div className="space-y-6">
             <div className="oswald font-bold text-xs tracking-widest uppercase">
               Visit Us
             </div>
             <div className="text-sm text-gray-500 font-light space-y-2">
-              <p>19a Tafsir Road</p>
-              <p>Bakau, The Gambia</p>
+              <p>19a Tafsir Road, Bakau, The Gambia</p>
               <p>kontentkunda@gmail.com</p>
             </div>
           </div>
-
           <div className="space-y-6">
             <div className="oswald font-bold text-xs tracking-widest uppercase">
               Contact
             </div>
             <div className="text-sm text-gray-500 font-light space-y-2">
               <p>(220) 722-2120</p>
-              <p>(220) 449-5633</p>
             </div>
           </div>
         </div>
-        <div className="max-w-6xl mx-auto border-t border-gray-100 mt-20 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] tracking-widest uppercase font-bold text-gray-400">
-          <div>&copy; 2024 KONTENT KUNDA. ALL RIGHTS RESERVED.</div>
+        <div className="text-center mt-20 text-[10px] tracking-widest uppercase font-bold text-gray-400">
+          &copy; 2024 KONTENT KUNDA.
         </div>
       </footer>
     </div>
