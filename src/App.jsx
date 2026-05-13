@@ -123,7 +123,7 @@ const App = () => {
           <img
             src="kontent.jpeg"
             alt="Kontent Kunda Logo"
-            className="h-10 w-auto object-contain"
+            className="h-16 w-auto object-contain"
             onError={(e) => {
               e.target.style.display = "none";
               e.target.nextSibling.style.display = "block";
@@ -175,68 +175,32 @@ const App = () => {
           GAMBIA
         </div>
 
-        <div className="max-w-7xl mx-auto w-full px-6 md:px-12 z-10 flex flex-col md:flex-row items-center justify-between">
+        <div className="max-w-7xl mx-auto w-full px-6 md:px-12 z-10 flex flex-col md:flex-row items-center justify-between pt-12 md:pt-27">
+          {" "}
           {/* Left Content Column - large logo/title */}
-          <div className="w-full md:w-1/2 flex flex-col items-start fade-in text-left relative z-10">
-            <div className="mb-6">
+          <div className="w-full flex flex-col items-center justify-center text-center relative z-10 px-4">
+            {/* Logo */}
+            <div className="w-full flex justify-center mb-6">
               <img
-                src="kontent.jpeg"
-                alt="Kontent Kunda"
-                className="h-12 w-auto object-contain grayscale mb-2"
+                src="siggil plus boy.png"
+                alt="Siggil Logo"
+                className="w-[130%] md:w-[90%] lg:w-[90%] max-w-[900px] max-h-[600px] h-auto object-contain"
                 onError={(e) => {
                   e.target.style.display = "none";
                 }}
               />
-              <div className="oswald text-[10px] font-black tracking-[0.8em] text-gray-400 uppercase">
-                PRESENTS
-              </div>
             </div>
 
-            <h1
-              className="oswald hero-title font-black m-0 text-black"
-              style={{ marginBottom: 8 }}
-            >
-              Siggil<span style={{ color: brandRed }}>!</span>
-            </h1>
-
-            <div className="oswald hero-subtitle text-xl md:text-3xl font-bold uppercase">
-              NATION ON THE BRINK
-            </div>
-
-            <div className="mt-6">
-              <div className="hashtag-banner oswald">
-                <span className="hashtag-text">#ASNARRATEDBYUS!</span>
+            {/* Hashtag */}
+            <div className="w-full flex justify-center">
+              <div className="hashtag-banner oswald text-center">
+                <span className="hashtag-text text-lg md:text-xl lg:text-2xl">
+                  #ASNARRATEDBYUS!
+                </span>
               </div>
             </div>
           </div>
-
-          {/* Right-side Image (enlarged, static) */}
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[65%] md:w-[70%] lg:w-[75%] max-w-[1200px] pointer-events-none z-0 hidden md:block">
-            <img
-              src="boy.png"
-              alt="Siggil Subject"
-              className="absolute right-0 top-0 h-auto drop-shadow-[-20px_20px_50px_rgba(0,0,0,0.1)] grayscale hover:grayscale-0 transition-all duration-1000"
-              style={{
-                objectPosition: "right center",
-                maskImage:
-                  "linear-gradient(to left, black 75%, transparent 100%)",
-                WebkitMaskImage:
-                  "linear-gradient(to left, black 75%, transparent 100%)",
-              }}
-              onError={(e) => {
-                e.target.style.display = "none";
-              }}
-            />
-          </div>
-
-          {/* Mobile Image (smaller, centered) */}
-          <div className="w-full mt-12 md:hidden">
-            <img
-              src="boy.png"
-              alt="Siggil Subject"
-              className="w-full h-auto grayscale opacity-80"
-            />
-          </div>
+          {/* Right-side image removed: logo and boy are now side-by-side above */}
         </div>
       </section>
 
@@ -424,29 +388,26 @@ const App = () => {
           <h2 className="playfair text-6xl italic mb-16">
             Upcoming Projects 2026
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="group relative overflow-hidden bg-zinc-900 rounded-sm p-12 space-y-6">
-              <div className="oswald text-6xl font-bold tracking-tighter">
-                Siggil<span style={{ color: brandRed }}>!</span>
-              </div>
-              <p className="text-gray-400 font-light leading-relaxed">
-                A national documentary campaign exploring urgent issues like
-                substance abuse and harmful products. Mapping a path for real
-                change in Gambia.
-              </p>
-              <div className="inline-block border border-white/20 px-6 py-2 text-xs oswald tracking-[0.3em] uppercase">
-                Documentary Series
-              </div>
-            </div>
-            <div className="group relative overflow-hidden bg-[#2D1B2D] rounded-sm p-12 space-y-6">
-              <div className="playfair text-6xl italic">Jongoma</div>
-              <p className="text-gray-400 font-light leading-relaxed">
-                Subtitled "The Unconventional Jihad". A curated, cutting-edge
-                entertainment experience that builds identities that truly
-                resonate.
-              </p>
-              <div className="inline-block border border-white/20 px-6 py-2 text-xs oswald tracking-[0.3em] uppercase">
-                Original Content
+          <div className="grid grid-cols-1 gap-12">
+            <div className="group relative overflow-hidden bg-[#2D1B2D] rounded-sm p-0 flex flex-col">
+              <img
+                src="jongoma.jpeg"
+                alt="Jongoma"
+                className="w-full h-auto object-contain"
+                onError={(e) => {
+                  e.target.style.display = "none";
+                }}
+              />
+              <div className="p-12 flex flex-col space-y-6">
+                <div className="oswald text-6xl font-bold">Jongoma</div>
+                <p className="text-gray-400 font-light leading-relaxed">
+                  Subtitled "The Unconventional Jihad". A curated, cutting-edge
+                  entertainment experience that builds identities that truly
+                  resonate.
+                </p>
+                <div className="inline-block border border-white/20 px-6 py-2 text-xs oswald tracking-[0.3em] uppercase">
+                  Original Content
+                </div>
               </div>
             </div>
           </div>
